@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function ShowCase(props) {
+    const mainTextPl = "Strony Internetowe i Aplikacje sieciowe dla Biznesu i nie tylko."
+    const mainTextEn = "Business and Private Web Pages, web Applications with complex systems"
     return (
         <div className="flex relative z-20 items-center">
             <div
@@ -9,10 +11,12 @@ export default function ShowCase(props) {
                     <img src={process.env.PUBLIC_URL + "/avatar.png"}
                          className="rounded-full w-28 mx-auto" alt={"Siema"}/>
                     <p className="text-3xl my-6 text-center dark:text-white">
-                        Hi, I&#x27;m Mateusz 🤘
+                        {props.lang === "en" ?
+                            "Hi, I'm Mateusz 🤘"
+                            : "Cześć, Tu Mateusz 🤘"}
                     </p>
                     <h2 className="max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2">
-                        Building digital products, brands, and experiences.
+                        {props.lang === "en" ? mainTextEn : mainTextPl}
                     </h2>
                     <div className="flex items-center justify-center mt-4">
                         <div className="flex items-center justify-center mt-4">

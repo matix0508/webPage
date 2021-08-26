@@ -12,10 +12,16 @@ export default function MainTheme(props) {
                 <Invitation />
                 <Header>
                     <MyEmail/>
-                    <NavBar darkMode={props.darkMode} onSwitchMode={props.onSwitchMode}>
-                        <NavItem href={"/"}>Home</NavItem>
-                        <NavItem href={"/resume"}>Resume</NavItem>
-                        <NavItem href={"/contact"}>Contact</NavItem>
+                    <NavBar
+                        darkMode={props.darkMode}
+                        lang={props.lang}
+                        onSwitchMode={props.onSwitchMode}
+                        onSwitchLang={props.onSwitchLang}
+                    >
+                        <NavItem href={"/"}>{props.lang === "en" ? "Home" : "Strona Główna"}</NavItem>
+                        <NavItem href={"/resume"}>{props.lang === "en" ? "Resume" : "Doświadczenie"}</NavItem>
+                        <NavItem href={"/projects"}>{props.lang === "en" ? "Projects" : "Projekty"}</NavItem>
+                        <NavItem href={"/contact"}>{props.lang === "en" ? "Contact" : "Kontakt"}</NavItem>
                     </NavBar>
                 </Header>
                 {props.children}

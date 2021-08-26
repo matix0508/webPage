@@ -5,6 +5,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
+import Projects from "./pages/Projects";
 
 export default class App extends Component {
     constructor(props) {
@@ -15,29 +16,45 @@ export default class App extends Component {
             lang: "en",
         };
         this.toggle_dark_mode = this.toggle_dark_mode.bind(this);
-        this.initialDarkMode = this.initialDarkMode.bind(this)
-        this.saveDarkMode = this.saveDarkMode.bind(this)
+        this.toggle_language = this.toggle_language.bind(this);
+        this.initialState = this.initialState.bind(this);
+        this.saveDarkMode = this.saveDarkMode.bind(this);
+        this.saveLanguage = this.saveLanguage.bind(this);
     }
 
-    toggle_dark_mode(props) {
+    toggle_dark_mode() {
         this.setState({darkMode: !this.state.darkMode});
+    }
+
+    toggle_language() {
+        this.setState({lang: this.state.lang === "en" ? "pl" : "en"})
     }
 
     saveDarkMode() {
         localStorage.setItem("darkMode", this.state.darkMode ? "1" : "0");
     }
 
-    initialDarkMode() {
-        this.setState({darkMode: localStorage.getItem("darkMode") === "1"})
+    saveLanguage() {
+        localStorage.setItem("lang", this.state.lang);
+    }
+
+    initialState() {
+        this.setState({
+            darkMode: localStorage.getItem("darkMode") === "1",
+            lang: localStorage.getItem("lang")
+        })
     }
 
     componentDidMount() {
-        this.initialDarkMode();
+        this.initialState();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.darkMode !== this.state.darkMode) {
             this.saveDarkMode();
+        }
+        if (prevState.lang !== this.state.lang) {
+            this.saveLanguage();
         }
     }
 
@@ -50,6 +67,7 @@ export default class App extends Component {
                             darkMode={this.state.darkMode}
                             onSwitchMode={() => this.toggle_dark_mode()}
                             lang={this.state.lang}
+                            onSwitchLang={() => this.toggle_language()}
                         />
                     </Route>
                     <Route path={"/resume"}>
@@ -57,6 +75,7 @@ export default class App extends Component {
                             darkMode={this.state.darkMode}
                             onSwitchMode={() => this.toggle_dark_mode()}
                             lang={this.state.lang}
+                            onSwitchLang={() => this.toggle_language()}
                         />
                     </Route>
                     <Route path={"/contact"}>
@@ -64,6 +83,16 @@ export default class App extends Component {
                             darkMode={this.state.darkMode}
                             onSwitchMode={() => this.toggle_dark_mode()}
                             lang={this.state.lang}
+                            onSwitchLang={() => this.toggle_language()}
+                        />
+
+                    </Route>
+                    <Route path={"/projects"}>
+                        <Projects
+                            darkMode={this.state.darkMode}
+                            onSwitchMode={() => this.toggle_dark_mode()}
+                            lang={this.state.lang}
+                            onSwitchLang={() => this.toggle_language()}
                         />
 
                     </Route>

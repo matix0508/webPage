@@ -6,7 +6,12 @@ import SocialMedia from "../components/SocialMedia";
 export default function Contact(props) {
     return (
 
-        <MainTheme darkMode={props.darkMode} onSwitchMode={props.onSwitchMode}>
+        <MainTheme
+            darkMode={props.darkMode}
+            onSwitchMode={props.onSwitchMode}
+            lang={props.lang}
+            onSwitchLang={props.onSwitchLang}
+        >
             <SocialMedia />
             <ContactMe />
         </MainTheme>

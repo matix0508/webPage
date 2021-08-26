@@ -1,8 +1,7 @@
-import React from "react";
 import MainTheme from "../components/MainTheme";
-import ShowCase from "../components/ShowCase";
+import ComplexList from "../components/ComplexList";
 
-export default function Home(props) {
+export default function Projects(props) {
     return (
         <MainTheme
             darkMode={props.darkMode}
@@ -10,9 +9,8 @@ export default function Home(props) {
             lang={props.lang}
             onSwitchLang={props.onSwitchLang}
         >
-            <ShowCase
-                lang={props.lang}
-            />
+            <ComplexList />
         </MainTheme>
+
     )
 }
